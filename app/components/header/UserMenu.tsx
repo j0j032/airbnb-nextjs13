@@ -2,7 +2,7 @@
 
 import React, {useCallback} from 'react';
 import {AiOutlineMenu} from "react-icons/ai";
-import Avatar from "@/app/components/header/Avatar";
+import Avatar from "@/app/components/ui/Avatar";
 import MenuItem from "@/app/components/header/MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";

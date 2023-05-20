@@ -16,6 +16,7 @@ import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/ui/Button";
 import toast from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import {signIn} from "next-auth/react";
 
 
 const RegisterModal = () => {
@@ -92,7 +93,7 @@ const RegisterModal = () => {
             <Button outline
                     label="Continue with Github"
                     icon={AiFillGithub}
-                    onClick={() => console.log('github')}
+                    onClick={() => signIn('github')}
             />
             <div className="text-neutral-500 text-center mt-4 font-light" >
                 <p >Already have an account?

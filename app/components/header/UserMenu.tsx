@@ -37,7 +37,7 @@ const UserMenu = ({currentUser}: UserMenuProps) => {
                     onClick={toggleOpen} >
                     <AiOutlineMenu />
                     <div className="hidden md:block" >
-                        <Avatar src="" />
+                        <Avatar src={currentUser?.image} />
                     </div >
                 </div >
             </div >

@@ -9,6 +9,7 @@ import {categories} from "@/app/constants/categories";
 import CategoryInput from "@/app/components/inputs/CategoryInput";
 import {FieldValues, useForm} from "react-hook-form";
 import CountrySelect from "@/app/components/inputs/CountrySelect";
+import dynamic from "next/dynamic";
 
 enum STEPS {
     CATEGORY = 0,
@@ -20,6 +21,7 @@ enum STEPS {
 }
 
 const RentModal = () => {
+
     const router = useRouter();
     const rentModal = useRentModal();
 
@@ -42,6 +44,11 @@ const RentModal = () => {
 
     const category = watch('category');
     const location = watch('location');
+
+    // Dynamic import to render the map only when needed (when the user is on the location step) and get zooming to work
+    const Map = useMemo(() => dynamic(() => import('@/app/components/ui/Map'), {
+        ssr: false
+    }), [location]);
 
     const onBack = () => {
         setStep((value) => value - 1);
@@ -101,6 +108,7 @@ const RentModal = () => {
             <div className="flex flex-col gap-8" >
                 <Heading title="Where is your place located?" subtitle="Help guests find you!" />
                 <CountrySelect onChange={(value) => setCustomValue('location', value)} value={location} />
+                <Map center={location?.latlng} />
             </div >
         );
     }

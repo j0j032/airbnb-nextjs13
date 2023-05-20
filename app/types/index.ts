@@ -1,4 +1,4 @@
-import {User} from "@prisma/client";
+import {Listing, User} from "@prisma/client";
 
 export type SafeUser = Omit<
     User,
@@ -16,3 +16,8 @@ export type CountrySelectValue = {
     region: string;
     value: string
 }
+
+export type SafeListing = Omit<Listing, "createdAt"> & {
+    createdAt: string;
+};
+

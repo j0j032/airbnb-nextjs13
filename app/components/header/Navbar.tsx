@@ -13,7 +13,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({currentUser}: NavbarProps) => {
-    console.log({currentUser})
+    
     return (
         <header className="fixed w-full bg-white z-10 shadow-sm" >
             <div className="py-4 border-b-[1px]" >

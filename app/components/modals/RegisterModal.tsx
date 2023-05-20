@@ -1,7 +1,7 @@
 'use client';
 
 import useRegisterModal from "@/app/hooks/useRegisterModal";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import Modal from "@/app/components/modals/Modal";
 import axios from "axios";
 import {AiFillGithub} from "react-icons/ai";
@@ -15,10 +15,12 @@ import Heading from "@/app/components/ui/Heading";
 import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/ui/Button";
 import toast from "react-hot-toast";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {register, handleSubmit, formState: {errors,}} = useForm<FieldValues>({
@@ -28,6 +30,11 @@ const RegisterModal = () => {
             password: ''
         },
     });
+
+    const onToggle = useCallback(() => {
+        loginModal.onOpen();
+        registerModal.onClose();
+    }, [loginModal, registerModal])
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
@@ -89,7 +96,7 @@ const RegisterModal = () => {
             />
             <div className="text-neutral-500 text-center mt-4 font-light" >
                 <p >Already have an account?
-                    <span onClick={() => console.log('toggle to sign in')}
+                    <span onClick={onToggle}
                           className="text-neutral-800 cursor-pointer hover:underline" >
                         Log in
                     </span >

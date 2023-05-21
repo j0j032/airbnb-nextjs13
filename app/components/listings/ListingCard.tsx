@@ -70,7 +70,9 @@ const ListingCard = ({
         >
             <div className="flex flex-col gap-2 w-full" >
                 <div className="aspect-square w-full relative overflow-hidden rounded-xl" >
-                    <Image fill className="object-cover h-full w-full group-hover:scale-110 transition"
+                    <Image fill
+                           sizes="100%"
+                           className="object-cover h-full w-full group-hover:scale-110 transition"
                            src={data.imageSrc}
                            alt="Listing"
                     />
